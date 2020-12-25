@@ -2,6 +2,12 @@ import cv2
 import tensorflow as tf
 import numpy as np
 from mtcnn_face_detector import face_detect
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--input', help='input image path', default='input/obamas.jpg', type=str)
+parser.add_argument('--output', help='output image path', default='output/result.jpg', type=str)
+args = parser.parse_args()
 
 model = tf.keras.models.load_model('saved_model')
 names = ['Ali-Khamenei', 'Angelina-Jolie', 'Barak-Obama', 'Behnam-Bani',
@@ -9,7 +15,7 @@ names = ['Ali-Khamenei', 'Angelina-Jolie', 'Barak-Obama', 'Behnam-Bani',
          'Leyla-Hatami', 'Lionel-Messi', 'Michelle-Obama', 'Morgan-Freeman',
          'Queen-Elizabeth', 'Scarlett-Johansson']
 
-frame = cv2.imread('input/obamas.jpg')
+frame = cv2.imread(args.input)
 
 resuls = face_detect(frame)
 for (x, y, a) in resuls:
@@ -27,6 +33,6 @@ for (x, y, a) in resuls:
 
     cv2.putText(frame, names[index], (x, y), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255))
 
-cv2.imwrite('output/obamas.jpg', frame)
+cv2.imwrite(args.output, frame)
 cv2.imshow('result', frame)
 cv2.waitKey()
