@@ -7,8 +7,8 @@ Face recognition using python
 
 ## Performance
 | Model | train Accuracy | test Accuracy |
-|:-|:-:|
-| Mobilenet0.25 | 99.22% | 92.50% |
+---|---|---|
+| MobileNetV2 | 99.22% | 92.50% |
 
 ## PreTrain Model
 If you do not wish to train the model, we also provide trained model. Pretrain model and trained model are put in
